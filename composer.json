@@ -1,0 +1,6 @@
+{
+    "require": {
+        "laravel/sanctum": "^4.2",
+        "maatwebsite/excel": "^1.1"
+    }
+}
