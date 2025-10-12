@@ -21,7 +21,7 @@ class CountyController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:counties'
+            'name' => 'required|string|max:255|unique:county'
         ]);
 
         return County::create($request->all());
@@ -32,7 +32,7 @@ class CountyController extends Controller
         $county = County::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|string|max:255|unique:counties,name,' . $county->id
+            'name' => 'required|string|max:255|unique:county,name,' . $county->id
         ]);
 
         $county->update($request->all());

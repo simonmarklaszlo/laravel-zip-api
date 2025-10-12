@@ -9,6 +9,7 @@ class County extends Model
 {
     use HasFactory;
 
+    protected $table = 'county';
     protected $fillable = ['name'];
 
     public function cities()

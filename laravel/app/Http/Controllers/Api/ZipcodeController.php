@@ -21,8 +21,8 @@ class ZipcodeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'zipcode' => 'required|integer|unique:zipcodes',
-            'city_id' => 'required|exists:cities,id'
+            'zipcode' => 'required|integer|unique:zipcode',
+            'city_id' => 'required|exists:city,id'
         ]);
 
         return Zipcode::create($request->all());
@@ -33,8 +33,8 @@ class ZipcodeController extends Controller
         $zipcode = Zipcode::findOrFail($id);
 
         $request->validate([
-            'zipcode' => 'required|integer|unique:zipcodes,zipcode,' . $zipcode->id,
-            'city_id' => 'required|exists:cities,id'
+            'zipcode' => 'required|integer|unique:zipcode,zipcode,' . $zipcode->id,
+            'city_id' => 'required|exists:city,id'
         ]);
 
         $zipcode->update($request->all());

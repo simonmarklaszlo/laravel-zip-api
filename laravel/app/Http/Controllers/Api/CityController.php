@@ -22,7 +22,7 @@ class CityController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:191',
-            'county_id' => 'required|exists:counties,id'
+            'county_id' => 'required|exists:county,id'
         ]);
 
         return City::create($request->all());
@@ -34,7 +34,7 @@ class CityController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:191',
-            'county_id' => 'required|exists:counties,id'
+            'county_id' => 'required|exists:county,id'
         ]);
 
         $city->update($request->all());

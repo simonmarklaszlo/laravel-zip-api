@@ -9,6 +9,7 @@ class Zipcode extends Model
 {
     use HasFactory;
 
+    protected $table = 'zipcode';
     protected $fillable = ['zipcode', 'city_id'];
 
     public function city()

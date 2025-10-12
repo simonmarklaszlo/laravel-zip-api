@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('zipcodes', function (Blueprint $table) {
+        Schema::create('zipcode', function (Blueprint $table) {
             $table->id();
             $table->integer('zipcode');
-            $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
+            $table->foreignId('city_id')->constrained('city')->onDelete('cascade');
             $table->timestamps();
         });
     }
