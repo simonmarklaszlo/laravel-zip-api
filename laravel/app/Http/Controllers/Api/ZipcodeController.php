@@ -20,25 +20,30 @@ class ZipcodeController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'zipcode' => 'required|integer|unique:zipcode',
             'city_id' => 'required|exists:city,id'
         ]);
 
-        return Zipcode::create($request->all());
+        $zipcode = Zipcode::create($validated);
+        $zipcode = Zipcode::with(['city.county'])->find($zipcode->id);
+
+        return response()->json($zipcode, 201);
     }
 
     public function update(Request $request, $id)
     {
         $zipcode = Zipcode::findOrFail($id);
 
-        $request->validate([
+        $validated = $request->validate([
             'zipcode' => 'required|integer|unique:zipcode,zipcode,' . $zipcode->id,
             'city_id' => 'required|exists:city,id'
         ]);
 
-        $zipcode->update($request->all());
-        return $zipcode;
+        $zipcode->update($validated);
+        $zipcode = Zipcode::with(['city.county'])->find($zipcode->id);
+
+        return response()->json($zipcode);
     }
 
     public function destroy($id)
